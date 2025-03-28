@@ -27,7 +27,7 @@ const Login = () => {
   };
 
   return (
-    <div style={{border: "1px solid black !important"}}>
+    <div style={{border: "1px solid black"}}>
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin}>

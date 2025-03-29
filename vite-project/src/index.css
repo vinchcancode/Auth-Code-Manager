@@ -22,13 +22,7 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+
 
 h1 {
   font-size: 3.2em;
@@ -67,8 +61,40 @@ button:focus-visible {
   }
 
 
+  .innerFormHolder{
+    border: 1px solid black !important;
+    border-radius: 20px;
+    padding: 2% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%; 
+    
+  }
+
   .formHolder{
     border: 1px solid black !important;
-    
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 100%; */
+    margin-left: auto !important;
+  }
+
+  .classColumn{
+    display: flex;
+    flex-direction: column;
+  }
+
+  input{
+    outline: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5%;
+    width: 100%;
+    /* min-width: 250px; */
+    /* margin-top: 5%; */
   }
 }

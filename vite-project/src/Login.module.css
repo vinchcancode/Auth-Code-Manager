@@ -51,11 +51,6 @@
     cursor: pointer;
     transition: border-color 0.25s;
   }
-  
-  button:hover {
-    border-color: #646cff;
-  }
-  
   textarea {
     background-color: transparent;
     color: wheat;

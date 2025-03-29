@@ -79,7 +79,7 @@ const Dashboard = () => {
         <h2>Dashboard</h2>
         <button className={styles.logoutBtn} onClick={handleLogout}>Logout</button>
       </div>
-      <div>
+      <div className={styles.txtAreaContainer}>
         <textarea
           className={styles.textArea}
           value={newCodes}
@@ -88,7 +88,7 @@ const Dashboard = () => {
           rows="6"
           cols="50"
         />
-        <button className={styles.addBtn} onClick={handleAddCodes}>Add Codes</button>
+        <button className={styles.btn} onClick={handleAddCodes}>Add Codes</button>
       </div>
       <h3>Your Codes:</h3>
       <div className={styles.codeList}>

@@ -1,93 +1,114 @@
 /* Dashboard Component Styles */
 
-.dashboard-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-  }
-  
-  .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-header h2 {
-    font-size: 1.5rem;
-  }
-  
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-    font-size: 1rem;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .code-list {
-    margin-top: 20px;
-  }
-  
-  .code-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .code-item span {
-    font-family: monospace;
-  }
-  
-  .copy-btn,
-  .delete-btn {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .copy-btn {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .copy-btn:hover {
-    background-color: #218838;
-  }
-  
-  .delete-btn {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .delete-btn:hover {
-    background-color: #c82333;
-  }
-  
+.dashboardContainer {
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #0C0C0C
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+  font-size: 1.5rem;
+}
+
+/* Textarea Container */
+.txtAreaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Adds spacing between elements */
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff; /* Light background */
+  max-width: 500px;
+  margin: 0 auto; /* Center it */
+}
+
+.textArea {
+  width: 100%;
+  max-width: 450px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+.btn {
+  width: 100%;
+  max-width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0056b3;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #004099;
+}
+
+.codeList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible column sizing */
+  gap: 10px; /* Adds spacing between items */
+  width: 100%;
+}
+
+.codeItem {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center align buttons and text */
+  justify-content: space-evenly;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  min-width: 150px; /* Ensure consistent width */
+  background-color: #fff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.codeItem span {
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.copy-btn,
+.delete-btn {
+  width: 100%; /* Make both buttons the same width */
+  padding: 8px 12px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.copyBtn {
+  background-color: #28a745;
+  color: white;
+}
+
+.copyBtn:hover {
+  background-color: #218838;
+}
+
+.deleteBtn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background-color: #c82333;
+}

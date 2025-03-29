@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <div className="formHolder">
     <div className="innerFormHolder">
-      <h2>Login</h2>
+      <h2>Code</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin} className="classColumn">
         <input
@@ -50,6 +50,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <br></br>
         <button type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>

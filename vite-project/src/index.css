@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  height: 100%;
+  background-color: black;
+  color: white; /* Optional: if you want white text on a black background */
+  margin: 0 !important;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -53,32 +60,34 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
   button {
-    background-color: #f9f9f9;
+    background-color: transparent;
+    color: wheat;
+    width: 100% !important;
+    border: 1px solid whitesmoke;
   }
+  
 
 
   .innerFormHolder{
-    border: 1px solid black !important;
+    border: 1px solid wheat !important;
     border-radius: 20px;
-    padding: 2% !important;
+    padding: 4% !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%; 
+    /* width: 50%;  */
     
   }
 
   .formHolder{
-    border: 1px solid black !important;
+    /* border: 1px solid black !important; */
     padding: 5%;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100% !important;
     /* width: 100%; */
     margin-left: auto !important;
   }
@@ -86,15 +95,29 @@ button:focus-visible {
   .classColumn{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;;
   }
 
   input{
     outline: none;
-    border: 2px solid black;
+    border: 2px solid white;
+    color:white;
     border-radius: 10px;
     padding: 5%;
     width: 100%;
-    /* min-width: 250px; */
+    min-width: 250px;
+    background-color: transparent;
     /* margin-top: 5%; */
+  }
+
+  input::placeholder{
+    color: whitesmoke;
+  }
+
+  textarea{
+    background-color: transparent;
+    color: wheat;
   }
 }

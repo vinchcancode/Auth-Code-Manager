@@ -13,8 +13,8 @@ const Dashboard = () => {
     // Clean the codes by removing the digits and the dot (e.g., 1.3VF6VF8 becomes 3VF6VF8)
     const cleanedCodes = newCodes
       .split(/\s+/) // Split the input by spaces (or new lines)
-      .map(code => code.replace(/\d+\./g, "")); // Remove digits and dot before each code
-      // .filter(code => code.length === 7); // Ensure that only 7-character codes are added
+      .map(code => code.replace(/\d+\./g, "")) // Remove digits and dot before each code
+      .filter(code => code.length === 7); // Ensure that only 7-character codes are added
 
     // Save the cleaned codes to Firestore
     const user = auth.currentUser;

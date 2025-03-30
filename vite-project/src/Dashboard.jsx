@@ -64,7 +64,10 @@ const Dashboard = () => {
     const user = auth.currentUser;
     if (user) {
       try {
+        // Reference the specific document inside Firestore
         await deleteDoc(doc(db, "users", user.uid, "codes", id));
+
+        // Remove from state only if deletion from Firestore succeeds
         setCodes(codes.filter((code) => code.id !== id));
       } catch (error) {
         console.error("Error deleting code:", error);

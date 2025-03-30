@@ -18,7 +18,7 @@ const Dashboard = () => {
     return input
       .split(/\s+/) // Split by spaces or new lines
       .map((code) => code.replace(/\d+\./g, "")) // Remove digits and dot
-      .filter((code) => code.length === 7); // Only keep 7-character codes
+      .filter((code) => code.length != 0); // Only keep 7-character codes
   };
 
   // Handle adding codes

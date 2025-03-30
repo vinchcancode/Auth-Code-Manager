@@ -173,7 +173,7 @@ const Dashboard = () => {
             </div>
           ))
         ) : (
-          <p>No codes found!</p>
+          <p>No codes founds!</p>
         )}
       </div>
     </div>

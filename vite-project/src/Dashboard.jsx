@@ -16,9 +16,10 @@ const Dashboard = () => {
   // Function to clean and extract valid 7-character codes
   const cleanCodes = (input) => {
     return input
-      .split(/\s+/) // Split by spaces or new lines
-      .map((code) => code.replace(/\d+\./g, "")) // Remove digits and dot
-      .filter((code) => code.length === 7); // Only keep 7-character codes
+      .split(/\s+/) // Split by spaces and new lines
+      .flatMap((line) => line.split(".")) // Split each line at dots
+      .map((code) => code.trim().slice(0, 7)) // Get only the first 7 characters
+      .filter((code) => /^[A-Z0-9]{7}$/.test(code)); // Keep only valid 7-character codes
   };
 
   // Handle adding codes
@@ -32,13 +33,16 @@ const Dashboard = () => {
     if (user) {
       try {
         const userCodesRef = collection(db, "users", user.uid, "codes");
+
         await Promise.all(
           cleanedCodes.map((code) => addDoc(userCodesRef, { code }))
         );
+
         setCodes([
           ...codes,
           ...cleanedCodes.map((code) => ({ id: Date.now().toString(), code })),
         ]);
+
         setNewCodes("");
       } catch (error) {
         console.error("Error adding codes:", error);
@@ -173,7 +177,7 @@ const Dashboard = () => {
             </div>
           ))
         ) : (
-          <p>No codes founds!</p>
+          <p>No codes found!</p>
         )}
       </div>
     </div>

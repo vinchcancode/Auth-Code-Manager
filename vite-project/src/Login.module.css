@@ -1,58 +1,56 @@
 /* Login Component Styles */
 
 .formHolder {
-    padding: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin-left: auto !important;
-    background-color: black;
-  }
-  
-  .innerFormHolder {
-    border-radius: 20px;
-    padding: 4% !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-  }
-  
-  .classColumn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  }
-  
-  input {
-    outline: none;
-    color: white;
-    border-radius: 10px;
-    padding: 5%;
-    width: 100%;
-    min-width: 250px;
-    background-color: transparent;
-    border: 1px solid black;
-  }
-  
-  button {
-    background-color: transparent;
-    color: wheat;
-    width: 100% !important;
-    border: 1px solid whitesmoke;
-    border-radius: 8px;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    cursor: pointer;
-    transition: border-color 0.25s;
-  }
-  textarea {
-    background-color: transparent;
-    color: wheat;
-  }
-  
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-left: auto !important;
+  background-color: black;
+}
+
+.innerFormHolder {
+  border-radius: 20px;
+  padding: 4% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.classColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+input {
+  outline: none;
+  border-radius: 10px;
+  padding: 5%;
+  width: 100%;
+  min-width: 250px;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.loginBtn {
+  background-color: rgb(32, 32, 102);
+  color: white;
+  width: 100% !important;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+textarea {
+  background-color: transparent;
+  color: wheat;
+}

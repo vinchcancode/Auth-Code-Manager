@@ -1,20 +1,23 @@
 /* Dashboard Component Styles */
 
 .dashboardContainer {
+  height: 100vh;
   border-radius: 8px;
-  padding: 20px;
-  background-color: #0C0C0C
+  padding: 15px;
+  background-color: #0c0c0c;
 }
 
-.dashboard-header {
+.dashboardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  margin: 0 50px;
 }
 
-.dashboard-header h2 {
+.dashboardHeader h2 {
   font-size: 1.5rem;
+  color: white;
 }
 
 /* Textarea Container */
@@ -61,7 +64,10 @@
 
 .codeList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible column sizing */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Flexible column sizing */
   gap: 10px; /* Adds spacing between items */
   width: 100%;
 }

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "./firebaseConfig"; // Firebase setup
-import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import styles from "./Dashboard.module.css";
 
 const Dashboard = () => {
@@ -11,23 +17,28 @@ const Dashboard = () => {
   const cleanCodes = (input) => {
     return input
       .split(/\s+/) // Split by spaces or new lines
-      .map(code => code.replace(/\d+\./g, "")) // Remove digits and dot
-      .filter(code => code.length === 7); // Only keep 7-character codes
+      .map((code) => code.replace(/\d+\./g, "")) // Remove digits and dot
+      .filter((code) => code.length === 7); // Only keep 7-character codes
   };
 
   // Handle adding codes
   const handleAddCodes = async () => {
     if (!newCodes.trim()) return alert("Please paste codes first.");
-    
+
     const cleanedCodes = cleanCodes(newCodes);
     if (cleanedCodes.length === 0) return alert("No valid codes found.");
-    
+
     const user = auth.currentUser;
     if (user) {
       try {
         const userCodesRef = collection(db, "users", user.uid, "codes");
-        await Promise.all(cleanedCodes.map((code) => addDoc(userCodesRef, { code })));
-        setCodes([...codes, ...cleanedCodes.map(code => ({ id: Date.now().toString(), code }))]);
+        await Promise.all(
+          cleanedCodes.map((code) => addDoc(userCodesRef, { code }))
+        );
+        setCodes([
+          ...codes,
+          ...cleanedCodes.map((code) => ({ id: Date.now().toString(), code })),
+        ]);
         setNewCodes("");
       } catch (error) {
         console.error("Error adding codes:", error);
@@ -50,7 +61,7 @@ const Dashboard = () => {
     if (user) {
       try {
         await deleteDoc(doc(db, "users", user.uid, "codes", id));
-        setCodes(codes.filter(code => code.id !== id));
+        setCodes(codes.filter((code) => code.id !== id));
       } catch (error) {
         console.error("Error deleting code:", error);
       }
@@ -63,8 +74,13 @@ const Dashboard = () => {
       const user = auth.currentUser;
       if (!user) return;
       try {
-        const codesSnapshot = await getDocs(collection(db, "users", user.uid, "codes"));
-        const fetchedCodes = codesSnapshot.docs.map(doc => ({ id: doc.id, code: doc.data().code }));
+        const codesSnapshot = await getDocs(
+          collection(db, "users", user.uid, "codes")
+        );
+        const fetchedCodes = codesSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          code: doc.data().code,
+        }));
         setCodes(fetchedCodes);
       } catch (error) {
         console.error("Error fetching codes:", error);
@@ -77,7 +93,51 @@ const Dashboard = () => {
     <div className={styles.dashboardContainer}>
       <div className={styles.dashboardHeader}>
         <h2>Dashboard</h2>
-        <button className={styles.logoutBtn} onClick={handleLogout}>Logout</button>
+        <button className={styles.logoutBtn} onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
+      <div
+        style={{
+          color: "white",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+
+          width: "150px",
+        }}
+      >
+        Useful links
+        <ul>
+          <li>
+            <a
+              style={{ textDecoration: "none", color: "white" }}
+              href="https://nodejs.org/dist/v22.14.0/node-v22.14.0-x64.msi"
+              download
+            >
+              NodeJS
+            </a>
+          </li>
+          <li>
+            <a
+              style={{ textDecoration: "none", color: "white" }}
+              href="https://code.visualstudio.com/docs/?dv=win64user"
+              download
+              target="blank"
+            >
+              VSCode
+            </a>
+          </li>
+          <li>
+            <a
+              style={{ textDecoration: "none", color: "white" }}
+              href="https://central.github.com/deployments/desktop/desktop/latest/win32"
+              download
+            >
+              GitHub
+            </a>
+          </li>
+        </ul>
       </div>
       <div className={styles.txtAreaContainer}>
         <textarea
@@ -88,16 +148,28 @@ const Dashboard = () => {
           rows="6"
           cols="50"
         />
-        <button className={styles.btn} onClick={handleAddCodes}>Add Codes</button>
+        <button className={styles.btn} onClick={handleAddCodes}>
+          Add Codes
+        </button>
       </div>
       <h3>Your Codes:</h3>
       <div className={styles.codeList}>
         {codes.length > 0 ? (
-          codes.map(codeObj => (
+          codes.map((codeObj) => (
             <div key={codeObj.id} className={styles.codeItem}>
               <span>{codeObj.code}</span>
-              <button className={styles.copyBtn} onClick={() => handleCopyCode(codeObj.code)}>Copy</button>
-              <button className={styles.deleteBtn} onClick={() => handleDeleteCode(codeObj.id)}>Delete</button>
+              <button
+                className={styles.copyBtn}
+                onClick={() => handleCopyCode(codeObj.code)}
+              >
+                Copy
+              </button>
+              <button
+                className={styles.deleteBtn}
+                onClick={() => handleDeleteCode(codeObj.id)}
+              >
+                Delete
+              </button>
             </div>
           ))
         ) : (

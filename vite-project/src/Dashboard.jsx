@@ -9,7 +9,6 @@ import {
 } from "firebase/firestore";
 import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
-import Forgooglecodes from "./Forgooglecodes";
 
 const Dashboard = () => {
   const [newCodes, setNewCodes] = useState("");

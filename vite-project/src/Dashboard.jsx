@@ -8,6 +8,8 @@ import {
   doc,
 } from "firebase/firestore";
 import styles from "./Dashboard.module.css";
+import { Link } from "react-router-dom";
+import Forgooglecodes from "./Forgooglecodes";
 
 const Dashboard = () => {
   const [newCodes, setNewCodes] = useState("");
@@ -143,6 +145,14 @@ const Dashboard = () => {
             >
               GitHub
             </a>
+          </li>
+          <li>
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to="/Forgooglecodes"
+            >
+              Google Auth-Code Page
+            </Link>
           </li>
         </ul>
       </div>

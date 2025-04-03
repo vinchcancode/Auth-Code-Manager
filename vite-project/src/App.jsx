@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
-import { observeAuthState } from "./AuthService"; // Import the observer
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { observeAuthState } from "./AuthService";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
+import Forgooglecodes from "./Forgooglecodes";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate(); // React Router navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = observeAuthState((user) => {
       setIsAuthenticated(!!user);
-      if (user) {
-        navigate("/dashboard"); // ✅ Automatically navigate to Dashboard when logged in
-      } else {
-        navigate("/"); // ✅ Redirect to login if logged out
+
+      // Redirect only when accessing restricted pages
+      const currentPath = window.location.pathname;
+      if (!user && currentPath !== "/") {
+        navigate("/");
       }
     });
 
-    return () => unsubscribe(); // Cleanup observer
+    return () => unsubscribe();
   }, [navigate]);
 
-  return <div>{!isAuthenticated ? <Login /> : <Dashboard />}</div>;
+  return (
+    <Routes>
+      <Route path="/" element={isAuthenticated ? <Dashboard /> : <Login />} />
+      <Route
+        path="/dashboard"
+        element={isAuthenticated ? <Dashboard /> : <Login />}
+      />
+      <Route
+        path="/Forgooglecodes"
+        element={isAuthenticated ? <Forgooglecodes /> : <Login />}
+      />
+    </Routes>
+  );
 }
 
 export default App;

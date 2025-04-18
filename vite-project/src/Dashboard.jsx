@@ -13,6 +13,53 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   const [newCodes, setNewCodes] = useState("");
   const [codes, setCodes] = useState([]);
+  const [blogspotLink, setBlogspotLink] = useState(null);
+
+  const apiKey = "AIzaSyBgBO0RmyZ3C8Ze1stUTVv1EO7n-UyCOuk";
+  const apiUrl = "https://www.googleapis.com/youtube/v3/search";
+  const commentsApiUrl = "https://www.googleapis.com/youtube/v3/commentThreads";
+  const channelId = "UCFbYQycybEVQzzCp6O-FzrQ";
+
+  // Fetch Blogspot link from latest YouTube video comment
+  useEffect(() => {
+    const fetchLatestVideoAndTopComment = async () => {
+      try {
+        const videoResponse = await fetch(
+          `${apiUrl}?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=1`
+        );
+        const videoData = await videoResponse.json();
+
+        if (videoData.items && videoData.items.length > 0) {
+          const videoId = videoData.items[0].id.videoId;
+
+          const commentResponse = await fetch(
+            `${commentsApiUrl}?key=${apiKey}&videoId=${videoId}&part=snippet&order=relevance&maxResults=1`
+          );
+          const commentData = await commentResponse.json();
+
+          if (commentData.items && commentData.items.length > 0) {
+            const commentHtml =
+              commentData.items[0].snippet.topLevelComment.snippet.textDisplay;
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(commentHtml, "text/html");
+            const links = Array.from(doc.querySelectorAll("a")).map(
+              (a) => a.href
+            );
+            const foundBlogspotLink = links.find((link) =>
+              link.includes("blogspot.com")
+            );
+
+            setBlogspotLink(foundBlogspotLink || null);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch YouTube comment blogspot link:", error);
+      }
+    };
+
+    fetchLatestVideoAndTopComment();
+  }, []);
 
   // Function to clean and extract valid 7-character codes
   const cleanCodes = (input) => {
@@ -152,6 +199,16 @@ const Dashboard = () => {
             >
               Google Auth-Code Page
             </Link>
+          </li>
+          <li>
+            <a
+              style={{ textDecoration: "none", color: "Salmon" }}
+              href={blogspotLink || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download Skins here
+            </a>
           </li>
         </ul>
       </div>
